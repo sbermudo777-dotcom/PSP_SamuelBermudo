@@ -11,7 +11,7 @@ int main(void) { // fifo12
     // Declaración de variables
     int fp1, fp2;
     int p, bytesleidos;
-    char buffer[3];
+    char buffer[4];
     int indice = 0;
     char numeroStr[3];
     int numeroInt;
@@ -30,8 +30,7 @@ int main(void) { // fifo12
         indice++;
     }
     close(fp1);
-    numeroStr[indice] = '\0'; // Añadir terminador nulo
-
+    
     // ESCRITURA DEL SEGUNDO PIPE Y FACTORIAL DEL NÚMERO GENERADO
     fp2 = open("FIFO2", 1); // Escritura en FIFO2
 
