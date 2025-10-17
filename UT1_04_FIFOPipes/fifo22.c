@@ -50,8 +50,7 @@ int main(void) { // fifo22
     write(fp, factorial, strlen(factorial));
     close(fp);
 
-    numeroStr[indice] = '\0'; // Añadir terminador nulo
-
     return (0);
 
 }
+
