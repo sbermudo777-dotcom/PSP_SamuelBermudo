@@ -8,6 +8,13 @@
 
 int main(void) { // fifo22
 
+    // Espera del proceso hasta que se ejecute el proceso fifo21
+    printf("Esperando la creación del FIFO...\n");
+    while (access("PIPE02", F_OK) == -1) {
+        printf("El PIPE02 aun no existe, esperando...\n");
+        sleep(1); // Esperar 1 segundo antes de reintentar
+    }
+    
     // Declaración de variables
     int fp;
     int p, bytesleidos;
@@ -46,4 +53,5 @@ int main(void) { // fifo22
     numeroStr[indice] = '\0'; // Añadir terminador nulo
 
     return (0);
+
 }
