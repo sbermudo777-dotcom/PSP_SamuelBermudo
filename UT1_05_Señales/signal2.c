@@ -3,11 +3,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/*
- * fun_signal_int es la función manejadora para SIGINT (Ctrl+C).
- * Permite la salida limpia del programa.
- */
-void fun_signal_int(int signum) {
+// fun_signal es la función manejadora para SIGINT (Ctrl+C).
+void fun_signal(int signum) {
     printf("\nSeñal SIGINT (%d) recibida. Finalizando el proceso %d.\n", signum,
            getpid());
     exit(0);
@@ -18,7 +15,7 @@ int main() {
     int segundos_transcurridos = 0;
 
     // Registro del manejador para SIGINT (Salida limpia)
-    signal(SIGINT, fun_signal_int);
+    signal(SIGINT, fun_signal);
 
     printf(
         "Inicio del proceso %d. El contador se actualizará cada %d segundos.\n",
