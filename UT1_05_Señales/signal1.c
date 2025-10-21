@@ -4,17 +4,14 @@
 #include <time.h>
 #include <unistd.h>
 
-/* Variable global para almacenar el PID del proceso */
-pid_t global_pid;
-
 /*
-  obtener_fecha_hora: Función auxiliar para obtener la fecha y hora actual
+  fechaHora: Función para obtener la fecha y hora actual
   en el formato dd/mm/yyyy hh:mm:ss.
  */
-void obtener_fecha_hora(char *buffer, size_t size) {
+void fechaHora(char *buffer, size_t buffer_size) {
     time_t t = time(NULL);
     struct tm *tm = localtime(&t);
-    strftime(buffer, size, "%d/%m/%Y %H:%M:%S", tm);
+    strftime(buffer, buffer_size, "%d/%m/%Y %H:%M:%S", tm);
 }
 
 /*
@@ -23,27 +20,26 @@ void obtener_fecha_hora(char *buffer, size_t size) {
  */
 void fun_signal(int signum) {
     char buffer[30];
-    obtener_fecha_hora(buffer, sizeof(buffer));
+    fechaHora(buffer, sizeof(buffer));
+    printf("\nFin del proceso %d: %s\n", getpid(), buffer);
 
-    printf("\nFin del proceso %d: %s\n", global_pid, buffer);
-
-    // Restaura la acción por defecto y termina (o simplemente termina con exit)
+    // Restaura la acción por defecto y termina
     signal(SIGINT, SIG_DFL);
     exit(0);
 }
 
 int main() {
     char inicio_buffer[30];
-
-    global_pid = getpid();
+    pid_t pid = getpid();
 
     signal(SIGINT, fun_signal); // Registro del manejador para SIGINT
 
     // Mostrar hora de inicio
-    obtener_fecha_hora(inicio_buffer, sizeof(inicio_buffer));
-    printf("Inicio del proceso %d: %s\n", global_pid, inicio_buffer);
+    fechaHora(inicio_buffer, sizeof(inicio_buffer));
+    printf("Inicio del proceso %d: %s\n", pid, inicio_buffer);
 
     // Bucle infinito para mantener el proceso vivo y esperando la señal
+    printf("Esperando la señal SIGINT (Ctrl+C)...\n");
     while (1) {
         sleep(1);
     }
