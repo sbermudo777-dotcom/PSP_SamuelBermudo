@@ -24,7 +24,7 @@ void fun_signal(int signum) {
     fprintf(f, "Señal SIGINT recibida a las %s\n", hora);
     fclose(f);
 
-    printf("\nSeñal SIGINT recibida a las %s (registrada en salidas.txt)\n",
+    printf("\nSeñal SIGINT recibida a las %s\n",
            hora);
 }
 
@@ -33,7 +33,7 @@ int main() {
     signal(SIGINT, fun_signal);
 
     printf("Programa signal3 ejecutándose... (usa Ctrl+C para probar)\n");
-    printf("Presiona Ctrl+ para terminar el programa.\n");
+    printf("Presiona Ctrl+\ para terminar el programa.\n");
 
     // Bucle infinito
     while (1) {
