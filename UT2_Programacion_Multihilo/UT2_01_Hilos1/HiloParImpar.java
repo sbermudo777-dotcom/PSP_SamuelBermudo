@@ -1,4 +1,4 @@
-package ejercicios;
+package ut2_01_Hilos1;
 
 public class HiloParImpar implements Runnable {
 
@@ -31,7 +31,7 @@ public class HiloParImpar implements Runnable {
 
 		// Modificar el programa para que muestre siempre los impares en primer lugar
 		t2.start(); // Inicia t2 impares
-		t2.join(); // Sigue hasta terminar
+		t2.join(); // Sigue hasta terminar, bloquea la ejecución de los demas hilos
 
 		t1.start(); // Inicia t1 pares
 		t1.join(); // Sigue hasta teminar
