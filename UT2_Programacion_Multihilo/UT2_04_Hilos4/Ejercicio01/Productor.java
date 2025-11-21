@@ -1,10 +1,10 @@
-package ut2_03_Hilos4;
+package ejercicio02;
 
 public class Productor extends Thread {
 
 	/*
-	 * Productor: genera 10 números enteros aleatorios y los almacena en una cola de
-	 * capacidad limitada (5 elementos).
+	 * Productor: genera números enteros aleatorios y los almacena en una cola de
+	 * capacidad limitada (5 elementos). Misma función que en el ejercicio anterior
 	 */
 
 	private Cola cola;
@@ -17,7 +17,8 @@ public class Productor extends Thread {
 	public void run() {
 
 		for (int i = 0; i < 10; i++) {
-			int numero = (int) (Math.random() * 100); // genera un número aleatorio entre 0-99
+			int numero = (int) (Math.random() * 9 + 1); // genera un número aleatorio entre 1-10 para que el producto
+														// no sea tan grande
 			cola.producir(numero);
 
 			try {

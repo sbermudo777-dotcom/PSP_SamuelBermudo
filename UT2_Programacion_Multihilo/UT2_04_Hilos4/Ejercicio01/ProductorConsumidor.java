@@ -1,4 +1,4 @@
-package ut2_03_Hilos4;
+package ejercicio02;
 
 public class ProductorConsumidor {
 
@@ -7,10 +7,12 @@ public class ProductorConsumidor {
 		Cola cola = new Cola();
 
 		Productor productor = new Productor(cola);
-		Consumidor consumidor = new Consumidor(cola);
+		ConsumidorSuma consumidor1 = new ConsumidorSuma(cola);
+		ConsumidorProducto consumidor2 = new ConsumidorProducto(cola);
 
 		productor.start();
-		consumidor.start();
+		consumidor1.start();
+		consumidor2.start();
 
 	}
 
