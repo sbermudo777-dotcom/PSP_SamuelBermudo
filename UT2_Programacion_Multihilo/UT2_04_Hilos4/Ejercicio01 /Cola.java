@@ -1,4 +1,4 @@
-package ejercicio02;
+package ejercicio01;
 
 import java.util.LinkedList;
 
@@ -29,7 +29,7 @@ public class Cola {
 	}
 
 	// Sincronización del consumidor
-	public synchronized int consumir(int clienteId) { // Get
+	public synchronized int consumir() { // Get
 		while (cantidad.isEmpty()) { // si la cola está vacía espera al productor
 			try {
 				wait();
@@ -39,8 +39,7 @@ public class Cola {
 		}
 
 		int numero = cantidad.removeFirst();
-		System.out
-				.println("    Consumidor " + clienteId + " consume: " + numero + " → Cola: " + cantidad.size() + "/5");
+		System.out.println("    Consumidor consume: " + numero + " → Cola: " + cantidad.size() + "/5");
 
 		notifyAll(); // avisar al productor que hay espacio en la cola
 		return numero;
