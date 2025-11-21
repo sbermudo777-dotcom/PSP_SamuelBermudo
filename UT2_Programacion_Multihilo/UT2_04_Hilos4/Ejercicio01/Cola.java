@@ -25,12 +25,12 @@ public class Cola {
 		cantidad.add(numero);
 		System.out.println("Productor produce: " + numero + " → Cola: " + cantidad.size() + "/5");
 
-		notifyAll(); // avisar a los consumidores que hay dato
+		notifyAll(); // avisar a los consumidores que hay algún producto
 	}
 
 	// Sincronización del consumidor
 	public synchronized int consumir() { // Get
-		while (cantidad.isEmpty()) { // cola vacía → esperar
+		while (cantidad.isEmpty()) { // si la cola está vacía espera al productor
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -41,7 +41,7 @@ public class Cola {
 		int numero = cantidad.removeFirst();
 		System.out.println("    Consumidor consume: " + numero + " → Cola: " + cantidad.size() + "/5");
 
-		notifyAll(); // avisar al productor que hay hueco
+		notifyAll(); // avisar al productor que hay espacio en la cola
 		return numero;
 	}
 
